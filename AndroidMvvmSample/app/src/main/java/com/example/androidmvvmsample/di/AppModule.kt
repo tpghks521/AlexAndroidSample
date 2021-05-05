@@ -1,8 +1,9 @@
 package com.example.androidmvvmsample.di
 
 import android.content.Context
-import com.example.androidmvvmsample.api.ApiService
+import com.example.androidmvvmsample.api.AppService
 import com.example.androidmvvmsample.data.AppDatabase
+import com.example.androidmvvmsample.data.repository.ImageRepository
 import com.example.androidmvvmsample.data.repository.MainRepository
 import dagger.Module
 import dagger.Provides
@@ -21,8 +22,14 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideMainRepository(): MainRepository {
-        return MainRepository()
+    fun provideAppService(): AppService {
+        return AppService.create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideImageRepository(appService: AppService, appDatabase: AppDatabase): ImageRepository {
+        return ImageRepository(appService, appDatabase)
     }
 
 }
