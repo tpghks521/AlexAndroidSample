@@ -6,5 +6,5 @@ import com.example.androidmvvmsample.data.BaseRepository
 
 class ImageRepository(appService: AppService, appDatabase: AppDatabase) : BaseRepository {
 
-    fun appService
+
 }
