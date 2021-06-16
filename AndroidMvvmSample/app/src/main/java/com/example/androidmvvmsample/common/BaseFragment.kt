@@ -4,20 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
+
+    protected abstract val layoutRes: Int
+    lateinit var dataBinding: T
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        dataBinding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
 
         setUpView()
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return dataBinding.root
     }
 
     abstract fun setUpView()
