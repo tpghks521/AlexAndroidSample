@@ -13,11 +13,11 @@ import retrofit2.http.Query
 interface AppService {
 
     @GET("/v2/search/image")
-    fun searchImage(
+  suspend fun searchImage(
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("size") size: Int
-    ): Call<KakaoImageList>
+    ): KakaoImageList
 
 
     companion object {
